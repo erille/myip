@@ -14,10 +14,10 @@ app.get('/', (req, res) => {
   const clientIp = req.clientIp;
   const forwardedIps = req.headers['x-forwarded-for'] ? req.headers['x-forwarded-for'].split(',').map(ip => ip.trim()) : [];
   const ispIp = forwardedIps.length > 0 ? forwardedIps[0] : clientIp;
-  const proxyIp = forwardedIps.length > 1 ? forwardedIps[1] : null;
+  const proxyIp = forwardedIps.length === 5 ? forwardedIps[1] : null;
 
   res.render('index', {
-    appName: 'Kepler My Ip',
+    appName: 'IP ADDRESS',
     myIp: ispIp,
     proxyIp: proxyIp,
     forwardedIps: forwardedIps
