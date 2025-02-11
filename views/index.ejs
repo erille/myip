@@ -33,13 +33,16 @@
   <div class="container">
     <h1><%= appName %></h1>
     <div class="box">
-      <strong>ISP IP Address:</strong> <%= ispIp %>
+      <strong>My IP Address:</strong> <%= myIp %>
     </div>
     <% if (proxyIp) { %>
       <div class="box">
-        <strong>Proxy IP Address:</strong> <%= proxyIp %>
+        <strong>Proxy Address:</strong> <%= proxyIp %>
       </div>
     <% } %>
+    <div class="box">
+      <strong>Forwarded IPs:</strong> <%= forwardedIps.join(', ') %>
+    </div>
   </div>
 </body>
 </html>

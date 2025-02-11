@@ -17,8 +17,9 @@ app.get('/', (req, res) => {
 
   res.render('index', {
     appName: 'Kepler My Ip',
-    ispIp: ispIp,
-    proxyIp: clientIp !== ispIp ? clientIp : null
+    myIp: ispIp,
+    proxyIp: clientIp !== ispIp ? clientIp : null,
+    forwardedIps: forwardedIps
   });
 });
 
