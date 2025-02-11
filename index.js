@@ -12,13 +12,14 @@ app.use(requestIp.mw());
 // Route to handle the home page
 app.get('/', (req, res) => {
   const clientIp = req.clientIp;
-  const forwardedIps = req.headers['x-forwarded-for'] ? req.headers['x-forwarded-for'].split(',') : [];
-  const ispIp = forwardedIps.length > 0 ? forwardedIps[0].trim() : clientIp;
+  const forwardedIps = req.headers['x-forwarded-for'] ? req.headers['x-forwarded-for'].split(',').map(ip => ip.trim()) : [];
+  const ispIp = forwardedIps.length > 0 ? forwardedIps[0] : clientIp;
+  const proxyIp = forwardedIps.length > 1 ? forwardedIps[1] : null;
 
   res.render('index', {
     appName: 'Kepler My Ip',
     myIp: ispIp,
-    proxyIp: clientIp !== ispIp ? clientIp : null,
+    proxyIp: proxyIp,
     forwardedIps: forwardedIps
   });
 });
